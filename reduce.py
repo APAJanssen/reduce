@@ -35,6 +35,9 @@ SEE ALSO
 
 '''
 
+#Change this path to correspond to reduce location on your machine:
+reduce_path = '/home/user/software/reduce'
+
 from pymol import cmd
 from pymol import stored
 import subprocess
@@ -48,7 +51,7 @@ def reduce(selection='all'):
     model = cmd.get_model(selection)
     cmd.save(export_filename, selection)
 
-    reduce_cmd = '/home/janssenapa/Software/Reduce/reduce -Quiet -build ' + export_filename + ' > ' + import_filename
+    reduce_cmd = reduce_path + ' -Quiet -build ' + export_filename + ' > ' + import_filename
     with open('reduce_output.txt','w+') as ferr:
         process=subprocess.run(reduce_cmd, shell=True, universal_newlines=True, stderr=ferr)
 
